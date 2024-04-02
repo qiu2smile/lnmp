@@ -129,6 +129,16 @@ $ docker exec -it nginx nginx -s reload
 ```
 这里两个`nginx`，第一个是容器名，第二个是容器中的`nginx`程序。
 
+支持绑定**任意多个域名**
+
+需要在lnmp/services/nginx/conf.d文件夹下创建一个新的conf文件 如 test.conf
+
+宿主机hosts文件内根据nginx主机ip绑定虚拟域名
+
+sudo vim /etc/hosts
+
+10.0.0.10 tp.test
+
 
 ### 3.2 安装PHP扩展
 PHP的很多功能都是通过扩展实现，而安装扩展是一个略费时间的过程，
@@ -339,9 +349,9 @@ install-php-extensions apcu
             }
         }
     }
-
+    
     ```
-**方法二：容器内使用composer命令**
+    **方法二：容器内使用composer命令**
 
 还有另外一种方式，就是进入容器，再执行`composer`命令，以PHP7容器为例：
 ```bash
@@ -349,7 +359,7 @@ docker exec -it php /bin/sh
 cd /www/localhost
 composer update
 ```
-    
+
 ## 4.管理命令
 ### 4.1 服务器启动和构建命令
 如需管理服务，请在命令后面加上服务器名称，例如：
@@ -537,5 +547,4 @@ docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 1. 目前使用mysql-server `8.0.28`以上的版本,php版本需要`7.4.7`以上才能连接
 ## License
 MIT
-
 
